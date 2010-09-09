@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'unicorn_horn'
+require ARGV.shift
+UnicornHorn::Runner.new( eval "[#{ARGV.join(',')}]" ).start

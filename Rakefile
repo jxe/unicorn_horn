@@ -9,6 +9,7 @@ begin
     gem.email = "joe@citizenlogistics.com"
     gem.homepage = "http://github.com/jxe/unicorn_horn"
     gem.authors = ["Joe Edelman"]
+    gem.add_dependency 'configurer'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
