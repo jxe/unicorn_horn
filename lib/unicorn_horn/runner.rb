@@ -2,7 +2,7 @@ module UnicornHorn
   class Runner < SelfPipeDaemon
 
     def initialize handlers
-      super
+      super()
       @workers = handlers.map{ |handler| Worker.new handler }
     end
 

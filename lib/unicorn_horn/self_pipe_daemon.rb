@@ -29,7 +29,7 @@ module UnicornHorn
     end
 
     def ploop
-      $0 = "#{ORIG_ZERO} master #{ARGVS}"
+      Utils.proc_name 'master'
       logger.info "master process ready"
 
       begin
