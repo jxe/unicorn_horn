@@ -9,7 +9,7 @@ module UnicornHorn
 
     def initialize handler
       @name    = handler.respond_to?(:name) ? handler.name : handler.inspect
-      @handler = handler.respond_to?(:new)  ? handler.new  : handler
+      @handler = handler
     end
 
     def launch!
@@ -23,6 +23,7 @@ module UnicornHorn
         [:TERM, :INT].each { |sig| trap(sig) { exit!(0) } }
         alive = @tmp
         m = 0
+        @handler = @handler.new if @handler.respond_to?(:new)
         logger.info "worker=#{name} ready"
 
         # the actual loop

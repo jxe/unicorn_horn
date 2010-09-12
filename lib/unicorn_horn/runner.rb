@@ -7,7 +7,7 @@ module UnicornHorn
     end
 
     def start
-      register :QUIT, :INT, :TERM, :CHLD
+      register :QUIT, :INT, :TERM, :CHLD, :HUP
       AFTER_FORK << proc{ @workers.clear; forget }
       @workers.each(&:launch!)
 
@@ -19,6 +19,7 @@ module UnicornHorn
           @workers.each{ |w| w.wpid or w.launch! }
           psleep 1
         when :CHLD;       next
+        when :HUP;        raze(:QUIT,  5);
         when :QUIT;       raze(:QUIT, 60); break
         when :TERM, :INT; raze(:TERM,  5); break
         end
