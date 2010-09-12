@@ -1,3 +1,4 @@
+require 'logger'
 require 'fcntl'
 require 'configurer'
 require 'unicorn_horn/utils'
