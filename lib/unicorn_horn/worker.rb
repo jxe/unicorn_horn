@@ -39,7 +39,6 @@ module UnicornHorn
       return unless @tmp and @wpid
       stat = @tmp.stat
       stat.mode == 0100600 and return
-      idle_timeout ||= 60
       (diff = (Time.now - stat.ctime)) <= idle_timeout and return
       logger.error "worker=#{name} PID:#{@wpid} timeout " \
                    "(#{diff}s > #{idle_timeout}s), killing"
