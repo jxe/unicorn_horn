@@ -9,13 +9,13 @@ module UnicornHorn
     def start
       register :QUIT, :INT, :TERM, :CHLD, :HUP
       AFTER_FORK << proc{ @workers.clear; forget }
-      @workers.each(&:launch!)
+      @workers.each{ |w| w.launch! }
 
       ploop do |signal|
         reap
         case signal
         when nil
-          @workers.each(&:kill_if_idle)
+          @workers.each{ |w| w.kill_if_idle }
           @workers.each{ |w| w.wpid or w.launch! }
           psleep 1
         when :CHLD;       next

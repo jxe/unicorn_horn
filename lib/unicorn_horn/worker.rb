@@ -18,7 +18,7 @@ module UnicornHorn
 
         # the prep work
         Utils.proc_name "worker[#{name}]"
-        AFTER_FORK.each(&:call)
+        AFTER_FORK.each{ |x| x.call }
         @tmp.fcntl(Fcntl::F_SETFD, Fcntl::FD_CLOEXEC)
         [:TERM, :INT].each { |sig| trap(sig) { exit!(0) } }
         alive = @tmp
