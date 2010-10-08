@@ -4,4 +4,8 @@ An extraction of the process monitoring logic from Unicorn
 
 == Copyright
 
-Copyright (c) 2010 Citizen Logistics, Inc. See LICENSE for details.
+This software is made available under the GPL v2, like Unicorn.
+
+Copyright (c) Zed A. Shaw
+Copyright (c) Eric Wong
+Copyright (c) Joe Edelman
